@@ -13,25 +13,25 @@ require (
 	github.com/benpate/delta v0.1.0
 	github.com/benpate/derp v0.35.0
 	github.com/benpate/digit v0.14.0
-	github.com/benpate/digital-dome v0.2.12
+	github.com/benpate/digital-dome v0.2.13
 	github.com/benpate/domain v0.2.12
 	github.com/benpate/exp v0.9.0
 	github.com/benpate/exp-builder v0.10.7
 	github.com/benpate/form v0.25.16
 	github.com/benpate/geo v0.0.3
-	github.com/benpate/hannibal v0.17.0
+	github.com/benpate/hannibal v0.17.1
 	github.com/benpate/html v0.16.16
 	github.com/benpate/icon v0.4.0
 	github.com/benpate/mediaserver v0.15.14
 	github.com/benpate/re v0.3.5
 	github.com/benpate/remote v0.18.1
 	github.com/benpate/rosetta v0.25.35
-	github.com/benpate/sherlock v0.8.20
+	github.com/benpate/sherlock v0.9.0
 	github.com/benpate/sniff v0.1.0
 	github.com/benpate/steranko v0.23.0
 	github.com/benpate/table v0.7.10
 	github.com/benpate/toot v0.3.0
-	github.com/benpate/turbine v0.4.6
+	github.com/benpate/turbine v0.4.7
 	github.com/benpate/uri v0.0.6
 	github.com/cespare/xxhash/v2 v2.3.0
 	github.com/codingsince1985/geo-golang v1.8.5
@@ -55,7 +55,7 @@ require (
 	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c
 	github.com/puzpuzpuz/xsync/v4 v4.4.0
 	github.com/relvacode/iso8601 v1.7.0
-	github.com/rs/zerolog v1.34.0
+	github.com/rs/zerolog v1.35.1
 	github.com/spf13/afero v1.15.0
 	github.com/spf13/pflag v1.0.10
 	github.com/stretchr/testify v1.11.1
@@ -108,7 +108,7 @@ require (
 	github.com/klauspost/compress v1.18.5 // indirect
 	github.com/klauspost/cpuid/v2 v2.3.0 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
-	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/mattn/go-isatty v0.0.22 // indirect
 	github.com/mmcdole/goxpp v1.1.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
@@ -132,8 +132,8 @@ require (
 	golang.org/x/image v0.37.0 // indirect
 	golang.org/x/net v0.53.0 // indirect
 	golang.org/x/sync v0.20.0 // indirect
-	golang.org/x/sys v0.43.0 // indirect
-	golang.org/x/text v0.36.0 // indirect
+	golang.org/x/sys v0.44.0 // indirect
+	golang.org/x/text v0.37.0 // indirect
 	golang.org/x/time v0.15.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
