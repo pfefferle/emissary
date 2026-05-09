@@ -260,7 +260,7 @@ func (service *ActivityStream) looksLikeValidURI(uri string) bool {
 		return true
 	}
 
-	if tagspub.IsHashtag(uri) {
+	if isValid, _ := tagspub.IsHashtag(uri); isValid {
 		return true
 	}
 
