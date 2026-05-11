@@ -292,6 +292,19 @@ func PostResetCode(ctx *steranko.Context, factory *service.Factory, session data
 		return derp.Wrap(err, location, "Unable to save user")
 	}
 
+	// Reset the failed signin attempts for this user so that they can sign in with their new password right away.
+	signinService := factory.SterankoSigninService(session)
+
+	if err := signinService.ClearSigninAttempts(user.Username); err != nil {
+		derp.Report(derp.Wrap(err, location, "Unable to clear signin attempts for user", user.Username))
+	}
+
+	// Try to send the password reset confirmation email.  If it fails, then log the error and move on.
+	emailService := factory.Email()
+	if err := emailService.SendPasswordResetConfirmation(session, &user); err != nil {
+		derp.Report(derp.Wrap(err, location, "Unable to send password reset confirmation email to user", user.Username))
+	}
+
 	// Forward to the sign-in page with a success message
 	return ctx.Redirect(http.StatusSeeOther, "/signin?message=password-reset&username="+user.Username)
 }

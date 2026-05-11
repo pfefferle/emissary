@@ -761,6 +761,37 @@ func (service *User) SendPasswordResetEmail(session data.Session, user *model.Us
 	}
 }
 
+// Lockout sends a lockout notification email to the user.  This method
+// swallows errors so that it can be run asynchronously.
+func (service *User) Lockout(session data.Session, username string) {
+
+	const location = "service.User.Lockout"
+
+	user := model.NewUser()
+	if err := service.LoadByUsername(session, username, &user); err != nil {
+		derp.Report(derp.Wrap(err, location, "Unable to load user by username", username))
+		return
+	}
+
+	// Reset the password to a random value
+	if newPassword, err := random.GenerateString(256); err == nil {
+		user.Password = newPassword
+	} else {
+		derp.Report(derp.Wrap(err, location, "Unable to generate random password", user))
+	}
+
+	// Make a ResetCode
+	if err := service.MakeNewPasswordResetCode(session, &user); err != nil {
+		derp.Report(derp.Wrap(err, location, "Error making password reset", user))
+		return
+	}
+
+	// Try to send the lockout email.  If it fails, then don't save the new password reset code.
+	if err := service.emailService.SendUserLockout(session, &user); err != nil {
+		derp.Report(derp.Wrap(err, location, "Unable to send user lockout email", user))
+	}
+}
+
 // MakeNewPasswordResetCode generates a new password reset code for the provided user.
 func (service *User) MakeNewPasswordResetCode(session data.Session, user *model.User) error {
 
