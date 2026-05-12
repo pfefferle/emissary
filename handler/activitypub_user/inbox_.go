@@ -135,11 +135,6 @@ func inbox_SaveActivity(context Context, activity streams.Document) error {
 
 	const location = "handler.activitypub_user.inbox_SaveActivity"
 
-	/* Require that the activity is addressed to this Actor
-	if activity.Recipients().NotContains(context.user.ActivityPubURL()) {
-		return derp.BadRequest(location, "Direct messages must be addressed to this Actor")
-	} */
-
 	// RULE: Create a default id for the activity if none is provided
 	if activity.ID() == "" {
 		activity.SetID("uri:uuid:" + primitive.NewObjectID().Hex())
@@ -169,9 +164,11 @@ func inbox_SaveActivity(context Context, activity streams.Document) error {
 		inboxActivity.PublishedDate = time.Now().Unix()
 	}
 
+	// Save the Activity to the User's Inbox
 	if err := inboxService.Save(context.session, &inboxActivity, ""); err != nil {
 		return derp.Wrap(err, location, "Unable to save direct message", context.user.UserID, activity.Value())
 	}
 
+	// Suxxess
 	return nil
 }

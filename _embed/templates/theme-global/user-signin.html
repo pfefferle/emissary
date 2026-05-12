@@ -92,7 +92,8 @@
 		end
 
 		on SigninError
-			set #message.innerHTML to "Invalid Login.  Please Try Again."
+		log the event
+			set #message.innerHTML to event.detail.value
 			remove [@hidden] from #message
 			remove [@disabled] from #submitButton
 	</script>
