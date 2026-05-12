@@ -47,7 +47,8 @@ func PostSignIn(ctx *steranko.Context, factory *service.Factory, session data.Se
 	user, err := factory.Steranko(session).SigninFormPost(ctx)
 
 	if err != nil {
-		ctx.Response().Header().Add("HX-Trigger", "SigninError")
+		messageJSON, _ := json.Marshal(map[string]string{"SigninError": derp.Message(err)})
+		ctx.Response().Header().Add("HX-Trigger", string(messageJSON))
 		return ctx.HTML(derp.ErrorCode(err), derp.Message(err))
 	}
 
